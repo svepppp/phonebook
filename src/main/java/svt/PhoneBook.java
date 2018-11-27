@@ -7,35 +7,43 @@ import java.util.Map;
 
 public class PhoneBook {
     private String fio;
-    private String phone;
-    private List<String> phones = new ArrayList<>();
-    private Map<String, String> phoneBook = new HashMap<>();
+    private String phoneString;
+    private List<String> phoneList;
+    private Map<String, String> phoneBookMap;
 
     public PhoneBook() {
-        phoneBook.put("Иванов И.И.", "+8 800 2000 500");
-        phoneBook.put("Петров П.П.", "+8 800 2000 500 +8 800 2000 700");
-        phoneBook.put("Сидоров П.П.", "+8 800 2000 800 +8 800 2000 900");
+        phoneBookMap = new HashMap<>();
+        phoneBookMap.put("Иванов И.И.", "+8 800 2000 500");
+        phoneBookMap.put("Петров П.П.", "+8 800 2000 500 +8 800 2000 700");
+        phoneBookMap.put("Сидоров П.П.", "+8 800 2000 800 +8 800 2000 900");
     }
 
-    public List<String> getPhones(String fio) {
+    public List<String> getPhoneList(String fio) {
+        phoneList = new ArrayList<>();
+        this.fio = fio;
+        String phone = " ";
         char symbol = ' ';
-        String phoneString = getPhoneString(fio);
-        for (int i = 0; i < phoneString.length(); i++) {
-            symbol = phoneString.charAt(i);
-            if (symbol == '+') {
-                String phone = phoneString.substring(i, i + 15);
-                phones.add(phone);
+        phoneString = getPhoneString();
+        if (phoneString.isEmpty()) {
+            phone = "Фамилии " + fio + " нет в БД";
+            phoneList.add(phone);
+        } else {
+            for (int i = 0; i < phoneString.length(); i++) {
+                symbol = phoneString.charAt(i);
+                if (symbol == '+') {
+                    phone = phoneString.substring(i, i + 15);
+                    phoneList.add(phone);
+                }
             }
         }
-        return phones;
+        return phoneList;
     }
 
-    private String getPhoneString(String fio) {
-        String phoneString = " ";
-        if (phoneBook.containsKey(fio)) {
-            phoneString = phoneBook.get(fio);
+    private String getPhoneString() {
+        if (phoneBookMap.containsKey(fio)) {
+            phoneString = phoneBookMap.get(fio);
         } else {
-            phoneString = " " + fio + " нет в БД";
+            phoneString = "";
         }
         return phoneString;
     }

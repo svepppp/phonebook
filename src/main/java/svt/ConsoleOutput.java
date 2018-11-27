@@ -3,7 +3,7 @@ package svt;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConsoleOutput implements Output{
+public class ConsoleOutput implements Output {
 
     @Override
     public List<String> showPhones(List<String> phones) {
