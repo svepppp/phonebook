@@ -8,7 +8,7 @@ public class Main {
         Output output=new ConsoleOutput();
         PhoneBook phoneBook=new PhoneBook();
         String fio=input.getFio();
-        List<String>  phones=phoneBook.getPhones(fio);
+        List<String>  phones=phoneBook.getPhoneList(fio);
         output.showPhones(phones);
     }
 }
