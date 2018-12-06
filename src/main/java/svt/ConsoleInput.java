@@ -15,6 +15,14 @@ public class ConsoleInput implements Input {
         scanner = new Scanner(inputStream);
     }
 
+    public Scanner getScanner() {
+        return scanner;
+    }
+
+    public void setScanner(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
     @Override
     public String getFio() {
         String fio;
